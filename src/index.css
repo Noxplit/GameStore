@@ -1,0 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700&display=swap');
+
+body {
+  font-family: 'Mulish', sans-serif;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(51, 46, 49, 1) 44%, rgba(147, 90, 112, 1) 97%);
+}
