@@ -1,5 +1,5 @@
 import { Box } from '@mui/material'
-import Header from './components/header/Header'
+import Header from './components/Header/Header'
 import Navigation from './components/Navigation/Navigation'
 import Footer from './components/Footer/Footer'
 import AppRoutes from './components/Routes/AppRoutes'
