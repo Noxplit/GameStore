@@ -7,9 +7,8 @@ import LocalMallIcon from '@mui/icons-material/LocalMall';
 import GamepadIcon from '@mui/icons-material/Gamepad';
 import { Link } from 'react-router-dom'
 import { ROUTE } from '../../Constants/route'
-import CustomSelect from '../CustomComponents/CustomSelect/CustomSelect'
-import { useDispatch } from 'react-redux'
-import { setOpenMenu } from '../../redux/actionSlice/actionSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { setOpenMenu, setSearchGame } from '../../redux/actionSlice/actionSlice'
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
 
@@ -60,6 +59,13 @@ export default function Header() {
     gap:'10px',
     }
   }
+ 
+  const [value, setValue] = React.useState('')
+
+  const handleSearch = () => {
+dispatch(setSearchGame(value))
+setValue('')
+  }
   
 	return (
 			<Box   sx={{ backgroundColor: 'inherit'    }} position='static'>
@@ -76,8 +82,8 @@ export default function Header() {
           </Box>
           <Box
 					{...inputContainer}>
-						<SearchIcon />
-						<InputBase sx={{ color: 'inherit', textAlign:'center' }} placeholder='Search game...' />
+						<SearchIcon onClick={handleSearch}/>
+						<InputBase value={value} onChange={e => setValue(e.target.value)} sx={{ color: 'inherit', textAlign:'center' }} placeholder='Search game...' />
 					</Box>
           <Box {...containerFlex}>
           <SearchIcon {...searchIcon} />

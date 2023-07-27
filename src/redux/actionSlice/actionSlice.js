@@ -5,6 +5,7 @@ export const actionSlice = createSlice({
 	initialState: {
 		id: 1,
 		singleGame: null,
+    search:null,
 		isOpenMenu: false,
 	},
 	reducers: {
@@ -17,8 +18,11 @@ export const actionSlice = createSlice({
 		setSingleGame: (state, { payload }) => {
 			state.singleGame = payload
 		},
+    setSearchGame: (state, { payload }) => {
+    state.search = payload
+    }
 	},
 })
 
-export const { setOpenMenu, getId, setSingleGame } = actionSlice.actions
+export const { setOpenMenu, getId, setSingleGame,setSearchGame } = actionSlice.actions
 export default actionSlice.reducer

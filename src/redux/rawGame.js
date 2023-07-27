@@ -19,8 +19,11 @@ export const rawGame = createApi({
 		getMovie: builder.query({
 			query: (id) => `games/${id}/movies?key=${API_KEY}`,
 		}),
+		getSearchGame: builder.query({
+			query: (search) => `games?search=${search}&key=${API_KEY}`,
+		}),
 
 	}),
 })
 
-export const { useGetRawGameQuery, useGetSingleGameQuery, useGetScreenshotsQuery, useGetMovieQuery} = rawGame
+export const { useGetRawGameQuery, useGetSingleGameQuery, useGetScreenshotsQuery, useGetMovieQuery, useGetSearchGameQuery} = rawGame

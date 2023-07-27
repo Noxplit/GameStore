@@ -1,5 +1,4 @@
 import { Box, ImageList, ImageListItem, Typography } from '@mui/material'
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import CustomButton from '../CustomComponents/CustomButton/CustomButton'
 import CustomIcons from '../CustomComponents/CustomIcons/CustomIcons'
@@ -15,7 +14,6 @@ const CustomSingleGame = () => {
 	const { data: screenshots } = useGetScreenshotsQuery(id)
 	const { data: movie } = useGetMovieQuery(id)
 	const srcMovie = movie?.results[0]?.data?.max
-	console.log(screenshots)
 
 	return (
 		<>
@@ -64,9 +62,6 @@ const CustomSingleGame = () => {
 					<CustomButton>Add to Cart</CustomButton>
 
 					<CustomIcons>
-						<ShoppingCartIcon fontSize='small' />
-					</CustomIcons>
-					<CustomIcons>
 						<FavoriteIcon fontSize='small' />
 					</CustomIcons>
 				</Box>
@@ -74,7 +69,7 @@ const CustomSingleGame = () => {
 				<ImageList cols={3}>
 					{screenshots?.results?.map(item => (
 						<ImageListItem key={item?.id}>
-							<img style={{ width: '100%', cursor:'pointer' }} src={item?.image} alt='game' />
+							<img style={{ width: '100%', cursor: 'pointer' }} src={item?.image} alt='game' />
 						</ImageListItem>
 					))}
 				</ImageList>

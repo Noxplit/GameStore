@@ -6,17 +6,17 @@ import CustomIcons from '../CustomComponents/CustomIcons/CustomIcons'
 import CustomGenre from '../CustomComponents/CustomGenre/CustomGenre'
 import { Link } from 'react-router-dom'
 import { useGetSingleGameQuery } from '../../redux/rawGame'
-import {  useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setSingleGame } from '../../redux/actionSlice/actionSlice'
 import { useEffect } from 'react'
 
 const CustomGame = () => {
 	const { id } = useSelector(state => state.action)
 	const { data } = useGetSingleGameQuery(id)
-  const dispatch = useDispatch()
-  useEffect(() => {dispatch(setSingleGame(data))},[data])
-  
-
+	const dispatch = useDispatch()
+	useEffect(() => {
+		dispatch(setSingleGame(data))
+	}, [data])
 
 	return (
 		<>
@@ -56,9 +56,6 @@ const CustomGame = () => {
 
 					<CustomButton>Add to Cart</CustomButton>
 
-					<CustomIcons>
-						<ShoppingCartIcon fontSize='small' />
-					</CustomIcons>
 					<CustomIcons>
 						<FavoriteIcon fontSize='small' />
 					</CustomIcons>
