@@ -3,7 +3,8 @@ import { Box } from '@mui/material'
 const CustomFlexBox = ({ children , ...other }) => {
 	return (
 		<Box {...other}
-			sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '5px' }}>
+    
+			sx={{ display: 'flex', alignItems: 'center', justifyContent:'space-between', gap: '5px' }}>
 			{children}
 		</Box>
 	)
