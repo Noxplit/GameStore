@@ -1,7 +1,7 @@
+import { GAME_LIST } from '../../Constants/constants'
 import GameList from './GameList'
 import GameOfDay from './GameOfDay'
-import MoreSales from './MoreSales'
-import SpecialOffers from './SpecialOffers'
+
 
 const Sidebar = () => {
 
@@ -9,9 +9,8 @@ const Sidebar = () => {
 	return (
     <>
 	<GameOfDay/>
-  <GameList/>
-<MoreSales/>
-<SpecialOffers/>
+  <GameList title='Game List' number={1}/>
+{GAME_LIST.map(game => <GameList key={game.title} title={game.title} number={game.number} quantity={game.quantity} />)}
   </>
 	)
 }

@@ -1,4 +1,6 @@
 export const ROUTE = {
 HOME:'/',
-SINGLEPAGE:'/game/:id'
+SINGLEPAGE:'/game/:id',
+CART:'/cart:id',
+FAVORITE:'/favorite:id'
 }

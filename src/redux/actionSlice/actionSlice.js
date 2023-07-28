@@ -7,6 +7,8 @@ export const actionSlice = createSlice({
 		singleGame: null,
     search:null,
 		isOpenMenu: false,
+    cart:[],
+    favorite:[]
 	},
 	reducers: {
 		setOpenMenu: (state, { payload }) => {
@@ -20,9 +22,19 @@ export const actionSlice = createSlice({
 		},
     setSearchGame: (state, { payload }) => {
     state.search = payload
+    },
+    addToCart: (state, { payload }) => {
+      state.cart.push(payload)
+    },
+    removeInCart: (state, { payload }) => {
+      state.cart = state.cart.filter(state => state.id === payload)
+    },
+ 
+    removeFromCart: (state, { payload }) => {
+      state.cart = state.cart.filter(state => state.id !== payload)
     }
 	},
 })
 
-export const { setOpenMenu, getId, setSingleGame,setSearchGame } = actionSlice.actions
+export const { setOpenMenu, getId, setSingleGame,setSearchGame, addToCart, removeInCart, removeFromCart } = actionSlice.actions
 export default actionSlice.reducer

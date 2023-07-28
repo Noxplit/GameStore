@@ -1,22 +1,48 @@
 import { Box, Typography } from '@mui/material'
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import CustomButton from '../CustomComponents/CustomButton/CustomButton'
-import CustomIcons from '../CustomComponents/CustomIcons/CustomIcons'
 import CustomGenre from '../CustomComponents/CustomGenre/CustomGenre'
 import { Link } from 'react-router-dom'
 import { useGetSingleGameQuery } from '../../redux/rawGame'
 import { useDispatch, useSelector } from 'react-redux'
-import { setSingleGame } from '../../redux/actionSlice/actionSlice'
+import { addToCart,  removeInCart, setSingleGame } from '../../redux/actionSlice/actionSlice'
 import { useEffect } from 'react'
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
+import { addToFavorite, removeFromFavorite } from '../../redux/favoriteSlice/favoriteSlice'
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 const CustomGame = () => {
 	const { id } = useSelector(state => state.action)
+	const { cart:addCart } = useSelector(state => state.action)
+	const { favorite:addFavorite } = useSelector(state => state.favorite)
 	const { data } = useGetSingleGameQuery(id)
 	const dispatch = useDispatch()
 	useEffect(() => {
 		dispatch(setSingleGame(data))
 	}, [data])
+
+  const cart = addCart.some(item => item.id === data.id)
+  const favorite = addFavorite.some(item => item.id === data.id)
+
+
+  const handleClick = (e) => {
+    e.stopPropagation()
+    if (!cart) {
+      dispatch(addToCart(data))
+    } else {
+      dispatch(removeInCart(data))
+    }
+  }
+  const handleClickFavorite = (e) => {
+    e.stopPropagation()
+    if (!favorite) {
+      dispatch(addToFavorite(data))
+    } else {
+      dispatch(removeFromFavorite(data))
+    }
+  }
+  console.log(addFavorite);
 
 	return (
 		<>
@@ -54,15 +80,18 @@ const CustomGame = () => {
 						{data?.playtime}$
 					</Typography>
 
-					<CustomButton>Add to Cart</CustomButton>
+					<CustomButton  onClick={handleClick}>
+						{cart ? <RemoveShoppingCartIcon fontSize='small'/> : <AddShoppingCartIcon fontSize='small'/> }
+					</CustomButton>
 
-					<CustomIcons>
-						<FavoriteIcon fontSize='small' />
-					</CustomIcons>
+					<CustomButton onClick={handleClickFavorite}>
+						{favorite ? <FavoriteIcon fontSize='small' /> : <FavoriteBorderIcon fontSize='small'/>  }
+					</CustomButton>
 				</Box>
 			</Box>
 		</>
 	)
 }
+
 
 export default CustomGame

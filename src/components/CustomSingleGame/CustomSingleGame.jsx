@@ -5,15 +5,42 @@ import CustomIcons from '../CustomComponents/CustomIcons/CustomIcons'
 import CustomGenre from '../CustomComponents/CustomGenre/CustomGenre'
 import LaptopMacIcon from '@mui/icons-material/LaptopMac'
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useGetMovieQuery, useGetScreenshotsQuery } from '../../redux/rawGame'
+import { addToCart, removeInCart } from '../../redux/actionSlice/actionSlice'
+import { addToFavorite, removeFromFavorite } from '../../redux/favoriteSlice/favoriteSlice'
 
 const CustomSingleGame = () => {
 	const { id } = useSelector(state => state.action)
 	const { singleGame: data } = useSelector(state => state.action)
+  const { cart:addCart } = useSelector(state => state.action)
+	const { favorite:addFavorite } = useSelector(state => state.favorite)
 	const { data: screenshots } = useGetScreenshotsQuery(id)
 	const { data: movie } = useGetMovieQuery(id)
 	const srcMovie = movie?.results[0]?.data?.max
+
+  const cart = addCart.some(item => item.id === data.id)
+  const favorite = addFavorite.some(item => item.id === data.id)
+
+const dispatch = useDispatch()
+
+  const handleClick = (e) => {
+    e.stopPropagation()
+    if (!cart) {
+      dispatch(addToCart(data))
+    } else {
+      dispatch(removeInCart(data))
+    }
+  }
+  const handleClickFavorite = (e) => {
+    e.stopPropagation()
+    if (!favorite) {
+      dispatch(addToFavorite(data))
+    } else {
+      dispatch(removeFromFavorite(data))
+    }
+  }
+
 
 	return (
 		<>
@@ -59,11 +86,11 @@ const CustomSingleGame = () => {
 						{data?.playtime}$
 					</Typography>
 
-					<CustomButton>Add to Cart</CustomButton>
+					<CustomButton onClick={handleClick}>Add to Cart</CustomButton>
 
-					<CustomIcons>
+					<CustomButton onClick={handleClickFavorite}>
 						<FavoriteIcon fontSize='small' />
-					</CustomIcons>
+					</CustomButton>
 				</Box>
 
 				<ImageList cols={3}>

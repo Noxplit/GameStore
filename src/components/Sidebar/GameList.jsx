@@ -9,27 +9,28 @@ import CustomButton from '../CustomComponents/CustomButton/CustomButton'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 
-const GameList = () => {
-	const [count, setCount] = useState(1)
+const GameList = ({title, number, quantity = 6}) => {
+	const [count, setCount] = useState(number)
 	const { search } = useSelector(state => state.action)
 	const dispatch = useDispatch()
 	const [seeMore, setSeeMore] = useState(false)
 	const { data } = useGetRawGameQuery(count)
 	const { data: dataSearch } = useGetSearchGameQuery(search)
-	const gamesShort = data?.results.slice(0, 6)
+	const gamesShort = data?.results.slice(0, quantity)
 	const gamesLong = data?.results.slice(0, 17)
-	const searchShort = dataSearch?.results.slice(0, 6)
+	const searchShort = dataSearch?.results.slice(0, quantity)
 	const searchLong = dataSearch?.results.slice(0, 15)
 
 	const handleSingleGame = id => {
 		dispatch(getId(id))
 	}
 
+
 	if (!search) {
 		return (
 			<Box>
 				<CustomFlexBox>
-					<CustomTypography>GameList</CustomTypography>
+					<CustomTypography>{title}</CustomTypography>
 					<Typography onClick={() => setSeeMore(!seeMore)} sx={{ cursor: 'pointer' }}>
 						{!seeMore ? 'See more' : 'Return'}
 					</Typography>
@@ -46,7 +47,7 @@ const GameList = () => {
 									}}>
 									<img
 										onClick={() => handleSingleGame(item.id)}
-										style={{ cursor: 'pointer', borderRadius: '5px', height: '200px' }}
+										style={{ cursor: 'pointer', borderRadius: '5px', height: '150px' }}
 										src={item?.background_image}
 										alt='rrr'
 										loading='lazy'
@@ -65,7 +66,7 @@ const GameList = () => {
 									}}>
 									<img
 										onClick={() => handleSingleGame(item.id)}
-										style={{ cursor: 'pointer', borderRadius: '5px', height: '150px' }}
+										style={{ cursor: 'pointer', borderRadius: '5px', height:'150px' }}
 										src={item?.background_image}
 										alt='rrr'
 										loading='lazy'
@@ -88,7 +89,7 @@ const GameList = () => {
 	return (
 		<Box>
 			<CustomFlexBox>
-				<CustomTypography>GameList</CustomTypography>
+				<CustomTypography>{title}</CustomTypography>
 				<Typography onClick={() => setSeeMore(!seeMore)} sx={{ cursor: 'pointer' }}>
 					{!seeMore ? 'See more' : 'Return'}
 				</Typography>
