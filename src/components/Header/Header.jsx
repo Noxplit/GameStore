@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setOpenMenu, setSearchGame } from '../../redux/actionSlice/actionSlice'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import CustomFlexBox from '../CustomFlexBox/CustomFlexBox'
+import CustomNotification from '../CustomComponents/CustomNotification/CustomNotification'
 
 export default function Header() {
 	const inputContainer = {
@@ -56,6 +57,8 @@ export default function Header() {
 
 	const { cart } = useSelector(state => state.action)
 	const { favorite } = useSelector(state => state.favorite)
+	const { checkout } = useSelector(state => state.checkout)
+  console.log();
 
 	return (
 		<Box sx={{ backgroundColor: 'inherit' }} position='static'>
@@ -80,41 +83,17 @@ export default function Header() {
 						/>
 					</Box>
 					<Box {...containerFlex}>
-						<NotificationsActiveIcon {...icons} />
+						<CustomNotification state={checkout} link={ROUTE.CHECKOUT}>
+							<NotificationsActiveIcon {...icons} />
+						</CustomNotification>
 
-						<Link style={{ textDecoration: 'none', color: 'white' }} to={ROUTE.CART}>
-							<Box sx={{ position: 'relative' }}>
-								<LocalMallIcon {...icons} />
-								<Typography
-									sx={{
-										position: 'absolute',
-										top: 25,
-										right: -5,
-										backgroundColor: 'gray',
-										padding: '0 7px',
-										borderRadius: '100%',
-									}}>
-									{cart.length}
-								</Typography>
-							</Box>
-						</Link>
-						<Link style={{ textDecoration: 'none', color: 'white' }} to={ROUTE.FAVORITE}>
-							<Box sx={{ position: 'relative' }}>
-								<FavoriteIcon {...icons} />
+						<CustomNotification state={cart} link={ROUTE.CART}>
+							<LocalMallIcon {...icons} />
+						</CustomNotification>
 
-								<Typography
-									sx={{
-										position: 'absolute',
-										top: 25,
-										right: -5,
-										backgroundColor: 'gray',
-										padding: '0 7px',
-										borderRadius: '100%',
-									}}>
-									{favorite.length}
-								</Typography>
-							</Box>
-						</Link>
+						<CustomNotification state={favorite} link={ROUTE.FAVORITE}>
+							<FavoriteIcon {...icons} />
+						</CustomNotification>
 					</Box>
 				</Box>
 			</Box>

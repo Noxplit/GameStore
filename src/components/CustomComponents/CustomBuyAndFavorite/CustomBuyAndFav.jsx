@@ -6,7 +6,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, removeInCart } from '../../../redux/actionSlice/actionSlice';
-import { addToFavorite, removeFromFavorite } from '../../../redux/favoriteSlice/favoriteSlice';
+import { addToFavorite, removeFromFavorite} from '../../../redux/favoriteSlice/favoriteSlice';
 
 const CustomBuyAndFav = ({data}) => {
 
@@ -21,17 +21,20 @@ const CustomBuyAndFav = ({data}) => {
     if (!cart) {
       dispatch(addToCart(data))
     } else {
-      dispatch(removeInCart(data))
+      dispatch(removeInCart(data.id))
     }
   }
+
   const handleClickFavorite = (e) => {
     e.stopPropagation()
     if (!favorite) {
       dispatch(addToFavorite(data))
     } else {
-      dispatch(removeFromFavorite(data))
+      dispatch(removeFromFavorite(data.id))
     }
   }
+  console.log(data);
+  console.log(addFavorite);
   return (
       <CustomFlexBox>
 					<CustomButton  onClick={handleClick}>

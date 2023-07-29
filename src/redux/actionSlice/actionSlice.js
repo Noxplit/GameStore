@@ -8,7 +8,7 @@ export const actionSlice = createSlice({
     search:null,
 		isOpenMenu: false,
     cart:[],
-    favorite:[]
+    favorite:[],
 	},
 	reducers: {
 		setOpenMenu: (state, { payload }) => {
@@ -27,7 +27,7 @@ export const actionSlice = createSlice({
       state.cart.push(payload)
     },
     removeInCart: (state, { payload }) => {
-      state.cart = state.cart.filter(state => state.id === payload)
+      state.cart = state.cart.filter(state => state.id !== payload)
     },
  
     removeFromCart: (state, { payload }) => {

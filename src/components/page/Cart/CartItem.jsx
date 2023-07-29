@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import CustomButton from '../../CustomComponents/CustomButton/CustomButton'
 import CustomFlexBox from '../../CustomFlexBox/CustomFlexBox'
 
-const CartItem = ({ game, remove }) => {
+const CartItem = ({ game, remove, stateRemove = true }) => {
   const dispatch = useDispatch()
   const handleSingleGame = id => {
 		dispatch(getId(id))
@@ -37,7 +37,7 @@ const CartItem = ({ game, remove }) => {
 					<Typography fontSize='10px'>{game?.name}</Typography>
 					<Typography fontSize='10px'>{game?.playtime} $</Typography>
           </Box>
-          <CustomButton onClick={() => dispatch(remove(game?.id))}>Remove</CustomButton>
+          {stateRemove && <CustomButton onClick={() => dispatch(remove(game?.id))}>Remove</CustomButton> }
           </CustomFlexBox>
 
 				</ImageListItem>

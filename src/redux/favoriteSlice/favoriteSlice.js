@@ -7,7 +7,7 @@ export const favoriteSlice = createSlice({
 	},
 	reducers: {
     removeFromFavorite: (state, { payload }) => {
-      state.favorite = state.favorite.filter(state => state.id === payload)
+      state.favorite = state.favorite.filter(state => state.id !== payload)
     },
     removeFromFavoritePage: (state, { payload }) => {
       state.favorite = state.favorite.filter(state => state.id !== payload)

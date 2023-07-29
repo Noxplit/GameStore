@@ -1,6 +1,7 @@
 export const ROUTE = {
 HOME:'/',
 SINGLEPAGE:'/game/:id',
-CART:'/cart:id',
-FAVORITE:'/favorite:id'
+CART:'/cart',
+FAVORITE:'/favorite',
+CHECKOUT:'/checkout'
 }
