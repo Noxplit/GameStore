@@ -8,7 +8,7 @@ import GamepadIcon from '@mui/icons-material/Gamepad'
 import { Link } from 'react-router-dom'
 import { ROUTE } from '../../Constants/route'
 import { useDispatch, useSelector } from 'react-redux'
-import { setOpenMenu, setSearchGame } from '../../redux/actionSlice/actionSlice'
+import { getId, setOpenMenu, setSearchGame } from '../../redux/actionSlice/actionSlice'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import CustomFlexBox from '../CustomFlexBox/CustomFlexBox'
 import CustomNotification from '../CustomComponents/CustomNotification/CustomNotification'
@@ -66,7 +66,7 @@ export default function Header() {
 				<CustomFlexBox>
 					<GamepadIcon onClick={() => dispatch(setOpenMenu(true))} />
 					<Typography variant='h6' component='div'>
-						<Link to={ROUTE.HOME} style={{ color: 'inherit', textDecoration: 'none' }}>
+						<Link  to={ROUTE.HOME} style={{ color: 'inherit', textDecoration: 'none' }}>
 							Joystore
 						</Link>
 					</Typography>

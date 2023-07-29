@@ -33,8 +33,7 @@ const CustomBuyAndFav = ({data}) => {
       dispatch(removeFromFavorite(data.id))
     }
   }
-  console.log(data);
-  console.log(addFavorite);
+
   return (
       <CustomFlexBox>
 					<CustomButton  onClick={handleClick}>

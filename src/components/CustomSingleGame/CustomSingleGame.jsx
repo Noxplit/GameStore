@@ -6,16 +6,20 @@ import CustomGenre from '../CustomComponents/CustomGenre/CustomGenre'
 import LaptopMacIcon from '@mui/icons-material/LaptopMac'
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports'
 import {  useSelector } from 'react-redux'
-import { useGetMovieQuery, useGetScreenshotsQuery } from '../../redux/rawGame'
+import { useGetMovieQuery, useGetScreenshotsQuery, useGetSingleGameQuery } from '../../redux/rawGame'
 import CustomBuyAndFav from '../CustomComponents/CustomBuyAndFavorite/CustomBuyAndFav'
+import { useState } from 'react'
+import PhotoSwiper from '../CustomComponents/PhotoSwiper/PhotoSwiper'
 
 const CustomSingleGame = () => {
 	const { id } = useSelector(state => state.action)
-	const { singleGame: data } = useSelector(state => state.action)
 	const { data: screenshots } = useGetScreenshotsQuery(id)
+	const { data } = useGetSingleGameQuery(id)
 	const { data: movie } = useGetMovieQuery(id)
 	const srcMovie = movie?.results[0]?.data?.max
+const [swiper,setSwiper] = useState(false)
 
+console.log(swiper);
 
 
 
@@ -69,10 +73,11 @@ const CustomSingleGame = () => {
 				<ImageList cols={3}>
 					{screenshots?.results?.map(item => (
 						<ImageListItem key={item?.id}>
-							<img style={{ width: '100%', cursor: 'pointer' }} src={item?.image} alt='game' />
+							<img onClick={() => setSwiper(true)} style={{ width: '100%', cursor: 'pointer' }} src={item?.image} alt='game' />
 						</ImageListItem>
 					))}
 				</ImageList>
+        {swiper && <PhotoSwiper swiper={swiper} setSwiper={setSwiper} link={screenshots?.results}/>}
 			</Box>
 
 			{srcMovie ? <video src={srcMovie} width='100%' controls={true} /> : null}
