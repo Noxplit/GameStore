@@ -3,5 +3,6 @@ HOME:'/',
 SINGLEPAGE:'/game/:id',
 CART:'/cart',
 FAVORITE:'/favorite',
-CHECKOUT:'/checkout'
+CHECKOUT:'/checkout',
+FILTER:'/filter'
 }

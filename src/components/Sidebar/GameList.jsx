@@ -1,4 +1,4 @@
-import { Box, ImageList, ImageListItem, Skeleton, Typography } from '@mui/material'
+import { Box, ImageList, ImageListItem,  Typography } from '@mui/material'
 import CustomTypography from '../CustomComponents/customTypography/CustomTypography'
 import CustomFlexBox from '../CustomFlexBox/CustomFlexBox'
 import { useGetRawGameQuery, useGetSearchGameQuery } from '../../redux/rawGame'
@@ -17,7 +17,7 @@ const GameList = ({title, number, quantity = 6}) => {
 	const { data } = useGetRawGameQuery(count)
 	const { data: dataSearch } = useGetSearchGameQuery(search)
 	const gamesShort = data?.results.slice(0, quantity)
-	const gamesLong = data?.results.slice(0, 17)
+	const gamesLong = data?.results.slice(0, 15)
 	const searchShort = dataSearch?.results.slice(0, quantity)
 	const searchLong = dataSearch?.results.slice(0, 15)
 

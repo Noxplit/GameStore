@@ -1,11 +1,15 @@
 import { Box, Typography } from '@mui/material'
-import VideogameAssetOffIcon from '@mui/icons-material/VideogameAssetOff'
+
 import FavoriteIcon from '@mui/icons-material/Favorite'
-import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted'
-import ShopIcon from '@mui/icons-material/Shop'
+import TuneIcon from '@mui/icons-material/Tune'
 import CloseIcon from '@mui/icons-material/Close'
 import { useDispatch } from 'react-redux'
 import { setOpenMenu } from '../../redux/actionSlice/actionSlice'
+import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive'
+import LocalMallIcon from '@mui/icons-material/LocalMall'
+import { Link } from 'react-router-dom'
+import { ROUTE } from '../../Constants/route'
+import GamepadIcon from '@mui/icons-material/Gamepad'
 
 const NavigationList = () => {
 	const conteinerFlex = {
@@ -39,25 +43,39 @@ const NavigationList = () => {
 	const dispatch = useDispatch()
 	return (
 		<Box {...conteinerFlex}>
-			<Box {...boxContainer}>
-				<VideogameAssetOffIcon fontSize='large' />
-				<Typography {...typography}>Game Store</Typography>
-			</Box>
+			<Link style={{ color: 'inherit' }} to={ROUTE.HOME}>
+				<Box {...boxContainer}>
+					<GamepadIcon />
+					<Typography {...typography}>Cart</Typography>
+				</Box>
+			</Link>
+			<Link style={{ color: 'inherit' }} to={ROUTE.CHECKOUT}>
+				<Box {...boxContainer}>
+					<NotificationsActiveIcon />
+					<Typography {...typography}>Checkout</Typography>
+				</Box>
+			</Link>
 
-			<Box {...boxContainer}>
-				<FavoriteIcon fontSize='large' />
-				<Typography {...typography}>Favorite</Typography>
-			</Box>
+			<Link style={{ color: 'inherit' }} to={ROUTE.CART}>
+				<Box {...boxContainer}>
+					<LocalMallIcon />
+					<Typography {...typography}>Cart</Typography>
+				</Box>
+			</Link>
 
-			<Box {...boxContainer}>
-				<FormatListBulletedIcon fontSize='large' />
-				<Typography {...typography}>List of genres</Typography>
-			</Box>
+			<Link style={{ color: 'inherit' }} to={ROUTE.FAVORITE}>
+				<Box {...boxContainer}>
+					<FavoriteIcon />
+					<Typography {...typography}>Favorite</Typography>
+				</Box>
+			</Link>
 
-			<Box {...boxContainer}>
-				<ShopIcon fontSize='large' />
-				<Typography {...typography}>Cart</Typography>
-			</Box>
+			<Link style={{ color: 'inherit' }} to={ROUTE.FILTER}>
+				<Box {...boxContainer}>
+					<TuneIcon />
+					<Typography {...typography}>Filter</Typography>
+				</Box>
+			</Link>
 			<Box onClick={() => dispatch(setOpenMenu(false))} {...boxContainer}>
 				<CloseIcon fontSize='large' />
 				<Typography {...typography}>Close</Typography>

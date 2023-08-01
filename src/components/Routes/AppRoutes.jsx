@@ -5,6 +5,7 @@ import { ROUTE } from '../../Constants/route'
 import Cart from '../page/Cart/Cart'
 import Favorite from '../page/Favorite/Favorite'
 import Checkout from '../page/Checkout/Checkout'
+import Filter from '../page/Filter/Filter'
 
 const AppRoutes = () => {
   return (
@@ -14,6 +15,7 @@ const AppRoutes = () => {
       <Route path={ROUTE.FAVORITE} element={<Favorite/>}/>
       <Route path={ROUTE.CHECKOUT} element={<Checkout/>}/>
       <Route path={ROUTE.CART} element={<Cart/>}/>
+      <Route path={ROUTE.FILTER} element={<Filter/>}/>
     </Routes>
   )
 }

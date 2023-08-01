@@ -1,31 +1,22 @@
 import * as React from 'react'
 import Box from '@mui/material/Box'
-import SearchIcon from '@mui/icons-material/Search'
-import { InputBase, Typography } from '@mui/material'
+
+import {  Typography } from '@mui/material'
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive'
 import LocalMallIcon from '@mui/icons-material/LocalMall'
 import GamepadIcon from '@mui/icons-material/Gamepad'
 import { Link } from 'react-router-dom'
 import { ROUTE } from '../../Constants/route'
 import { useDispatch, useSelector } from 'react-redux'
-import { getId, setOpenMenu, setSearchGame } from '../../redux/actionSlice/actionSlice'
+import { setOpenMenu, setSearchGame } from '../../redux/actionSlice/actionSlice'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import CustomFlexBox from '../CustomFlexBox/CustomFlexBox'
 import CustomNotification from '../CustomComponents/CustomNotification/CustomNotification'
+import TuneIcon from '@mui/icons-material/Tune';
+import CustomSearch from '../CustomComponents/CustimSearch/CustomSearch'
 
 export default function Header() {
-	const inputContainer = {
-		sx: {
-			display: 'flex',
-			alignItems: 'center',
-			justifyContent: 'center',
-			gap: '5px',
-			padding: '5px',
-			textAlign: 'center',
-			backgroundColor: '#504147',
-			borderRadius: '10px',
-		},
-	}
+
 
 	const icons = {
 		sx: {
@@ -42,7 +33,16 @@ export default function Header() {
 	const containerFlex = {
 		sx: {
 			borderRadius: '100%',
-			display: 'flex',
+			display:  'flex',
+			justifyContent: 'space-between',
+			alignItems: 'start',
+			gap: '10px',
+		},
+	}
+	const containerIcons = {
+		sx: {
+			borderRadius: '100%',
+			display: ['none', 'none', 'flex'],
 			justifyContent: 'space-between',
 			alignItems: 'start',
 			gap: '10px',
@@ -73,16 +73,8 @@ export default function Header() {
 				</CustomFlexBox>
 
 				<Box sx={{ flexWrap: 'wrap', gap: '5px', justifyContent: 'end', display: 'flex' }}>
-					<Box {...inputContainer}>
-						<SearchIcon sx={{ cursor: 'pointer' }} onClick={handleSearch} />
-						<InputBase
-							value={value}
-							onChange={e => setValue(e.target.value)}
-							sx={{ color: 'inherit', textAlign: 'center', width: ['120px', '150px', '200px'] }}
-							placeholder='Search game...'
-						/>
-					</Box>
-					<Box {...containerFlex}>
+		<CustomSearch value={value} setValue={e => setValue(e.target.value)} handleSearch={handleSearch}/>
+					<Box {...containerIcons}>
 						<CustomNotification state={checkout} link={ROUTE.CHECKOUT}>
 							<NotificationsActiveIcon {...icons} />
 						</CustomNotification>
@@ -93,6 +85,9 @@ export default function Header() {
 
 						<CustomNotification state={favorite} link={ROUTE.FAVORITE}>
 							<FavoriteIcon {...icons} />
+						</CustomNotification>
+						<CustomNotification state={favorite} link={ROUTE.FILTER}>
+							<TuneIcon {...icons} />
 						</CustomNotification>
 					</Box>
 				</Box>

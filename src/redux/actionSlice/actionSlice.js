@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 export const actionSlice = createSlice({
 	name: 'action',
 	initialState: {
-		id: 1,
+		id: 5,
 		singleGame: null,
     search:null,
 		isOpenMenu: false,
