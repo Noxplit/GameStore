@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux'
 import { getId } from '../../../redux/actionSlice/actionSlice'
 import { Link } from 'react-router-dom'
 
-const FilteredGameList = ({ title,  quantity = 6, data, loading }) => {
+const FilteredGameList = ({ title, quantity = 6, data, loading, isGameExist }) => {
 	const dispatch = useDispatch()
 	const [seeMore, setSeeMore] = useState(false)
 
@@ -16,11 +16,13 @@ const FilteredGameList = ({ title,  quantity = 6, data, loading }) => {
 	const handleSingleGame = id => {
 		dispatch(getId(id))
 	}
-  console.log(loading);
+	console.log(loading)
 
-if (loading) {
-  return <CircularProgress  color='inherit'/>
-}
+	if (loading) {
+		return <CircularProgress color='inherit' />
+	} else if (isGameExist) {
+		return <></>
+	}
 	return (
 		<Box>
 			<CustomFlexBox>

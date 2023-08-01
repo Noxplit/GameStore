@@ -12,10 +12,10 @@ const Filter = () => {
 
 
   return (
-    <Box sx={{padding:'20px 0', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', width:'100%'}}>
+    <Box sx={{padding:'20px 0', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', width:'100%', gap:'20px'}}>
       <GameFilters filteredGames={filteredGames} setGames={setGames} setSelect={setSelect}/>
       {isGameExist &&  <Typography textAlign='center' variant='h4'>Games not found</Typography> }
-<FilteredGameList loading = {isLoading} data={games}/>
+<FilteredGameList isGameExist={isGameExist} loading = {isLoading} data={games}/>
     </Box>
   )
 }
