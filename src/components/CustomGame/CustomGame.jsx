@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material'
+import { Box, CircularProgress, Typography } from '@mui/material'
 
 import CustomGenre from '../CustomComponents/CustomGenre/CustomGenre'
 import { Link } from 'react-router-dom'
@@ -7,21 +7,24 @@ import { useDispatch, useSelector } from 'react-redux'
 import {  setSingleGame } from '../../redux/actionSlice/actionSlice'
 import { useEffect } from 'react'
 import CustomBuyAndFav from '../CustomComponents/CustomBuyAndFavorite/CustomBuyAndFav'
+import { setLoadingGame } from '../../redux/loadingSlice/loadingSlice'
 
 
 
 const CustomGame = () => {
 	const { id } = useSelector(state => state.action)
 
-	const { data } = useGetSingleGameQuery(id)
+	const { data, isLoading } = useGetSingleGameQuery(id)
 	const dispatch = useDispatch()
 	useEffect(() => {
 		dispatch(setSingleGame(data))
 	}, [data])
 
 
-
-
+useEffect(() => {
+dispatch(setLoadingGame(isLoading))
+},[isLoading])
+console.log(isLoading);
 
 
 

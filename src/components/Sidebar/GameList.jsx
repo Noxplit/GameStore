@@ -1,21 +1,22 @@
-import { Box, ImageList, ImageListItem,  Typography } from '@mui/material'
+import { Box, CircularProgress, ImageList, ImageListItem,  Typography } from '@mui/material'
 import CustomTypography from '../CustomComponents/customTypography/CustomTypography'
 import CustomFlexBox from '../CustomFlexBox/CustomFlexBox'
 import { useGetRawGameQuery, useGetSearchGameQuery } from '../../redux/rawGame'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getId } from '../../redux/actionSlice/actionSlice'
 import CustomButton from '../CustomComponents/CustomButton/CustomButton'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
+import { setLoadingGameList } from '../../redux/loadingSlice/loadingSlice'
 
 const GameList = ({title, number, quantity = 6}) => {
 	const [count, setCount] = useState(number)
 	const { search } = useSelector(state => state.action)
 	const dispatch = useDispatch()
 	const [seeMore, setSeeMore] = useState(false)
-	const { data } = useGetRawGameQuery(count)
-	const { data: dataSearch } = useGetSearchGameQuery(search)
+	const { data, isLoading } = useGetRawGameQuery(count)
+	const { data: dataSearch, isLoading:isLoadingSearch } = useGetSearchGameQuery(search)
 	const gamesShort = data?.results.slice(0, quantity)
 	const gamesLong = data?.results.slice(0, 15)
 	const searchShort = dataSearch?.results.slice(0, quantity)
@@ -25,6 +26,9 @@ const GameList = ({title, number, quantity = 6}) => {
 		dispatch(getId(id))
 	}
 
+useEffect(() => {
+  dispatch(setLoadingGameList(isLoading))
+},[isLoading])
 
 	if (!search) {
 		return (

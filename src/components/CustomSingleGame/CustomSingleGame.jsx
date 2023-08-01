@@ -1,4 +1,4 @@
-import { Box, ImageList, ImageListItem, Typography } from '@mui/material'
+import { Box, CircularProgress, ImageList, ImageListItem, Typography } from '@mui/material'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import CustomButton from '../CustomComponents/CustomButton/CustomButton'
 import CustomIcons from '../CustomComponents/CustomIcons/CustomIcons'
@@ -13,16 +13,18 @@ import PhotoSwiper from '../CustomComponents/PhotoSwiper/PhotoSwiper'
 
 const CustomSingleGame = () => {
 	const { id } = useSelector(state => state.action)
-	const { data: screenshots } = useGetScreenshotsQuery(id)
-	const { data } = useGetSingleGameQuery(id)
-	const { data: movie } = useGetMovieQuery(id)
+	const { data: screenshots, isLoading:loadingScreen } = useGetScreenshotsQuery(id)
+	const { data, isLoading:loadingGame } = useGetSingleGameQuery(id)
+	const { data: movie, isLoading:loadingMovie } = useGetMovieQuery(id)
 	const srcMovie = movie?.results[0]?.data?.max
 const [swiper,setSwiper] = useState(false)
 
 console.log(swiper);
 
 
-
+if(loadingScreen, loadingGame, loadingMovie ) {
+  return <CircularProgress size={50} sx={{margin:'100px'}} color='inherit'/>
+}
 	return (
 		<>
 			<img
