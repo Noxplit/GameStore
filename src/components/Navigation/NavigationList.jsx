@@ -39,38 +39,38 @@ const NavigationList = () => {
 			transition: '0.3s',
 		},
 	}
+  const dispatch = useDispatch()
 
-	const dispatch = useDispatch()
 	return (
 		<Box {...conteinerFlex}>
-			<Link style={{ color: 'inherit' }} to={ROUTE.HOME}>
+			<Link onClick={() => dispatch(setOpenMenu(false))} style={{ color: 'inherit', textDecoration:'none' }} to={ROUTE.HOME}>
 				<Box {...boxContainer}>
 					<GamepadIcon />
 					<Typography {...typography}>Cart</Typography>
 				</Box>
 			</Link>
-			<Link style={{ color: 'inherit' }} to={ROUTE.CHECKOUT}>
+			<Link onClick={() => dispatch(setOpenMenu(false))} style={{ color: 'inherit', textDecoration:'none' }} to={ROUTE.CHECKOUT}>
 				<Box {...boxContainer}>
 					<NotificationsActiveIcon />
 					<Typography {...typography}>Checkout</Typography>
 				</Box>
 			</Link>
 
-			<Link style={{ color: 'inherit' }} to={ROUTE.CART}>
+			<Link onClick={() => dispatch(setOpenMenu(false))} style={{ color: 'inherit', textDecoration:'none' }} to={ROUTE.CART}>
 				<Box {...boxContainer}>
 					<LocalMallIcon />
 					<Typography {...typography}>Cart</Typography>
 				</Box>
 			</Link>
 
-			<Link style={{ color: 'inherit' }} to={ROUTE.FAVORITE}>
+			<Link onClick={() => dispatch(setOpenMenu(false))} style={{ color: 'inherit', textDecoration:'none' }} to={ROUTE.FAVORITE}>
 				<Box {...boxContainer}>
 					<FavoriteIcon />
 					<Typography {...typography}>Favorite</Typography>
 				</Box>
 			</Link>
 
-			<Link style={{ color: 'inherit' }} to={ROUTE.FILTER}>
+			<Link onClick={() => dispatch(setOpenMenu(false))} style={{ color: 'inherit', textDecoration:'none' }} to={ROUTE.FILTER}>
 				<Box {...boxContainer}>
 					<TuneIcon />
 					<Typography {...typography}>Filter</Typography>

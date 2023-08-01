@@ -23,7 +23,7 @@ export const rawGame = createApi({
 			query: search => `games?search=${search}&key=${API_KEY}`,
 		}),
 		getListGenres: builder.query({
-			query: () => `genres?page_size=5&key=${API_KEY}`,
+			query: () => `genres?page_size=10&key=${API_KEY}`,
 		}),
 		getFilteredGames: builder.query({
 			query: (params = 'action') => `games?genres=${params}&key=${API_KEY}`,

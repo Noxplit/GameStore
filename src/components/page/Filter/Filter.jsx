@@ -8,15 +8,14 @@ const Filter = () => {
 	const [select, setSelect] = useState('')
 	const [games, setGames] = useState()
   const {data:filteredGames, isLoading} = useGetFilteredGamesQuery(select.toLowerCase())
-  console.log(games);
-
+  const isGameExist =  !games?.results.length
 
 
   return (
-    <Box sx={{padding:'20px 0'}}>
+    <Box sx={{padding:'20px 0', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', width:'100%'}}>
       <GameFilters filteredGames={filteredGames} setGames={setGames} setSelect={setSelect}/>
-      {filteredGames?.count === 0 && <Typography textAlign='center' variant='h4'>Games not found</Typography> }
-<FilteredGameList data={games}/>
+      {isGameExist &&  <Typography textAlign='center' variant='h4'>Games not found</Typography> }
+<FilteredGameList loading = {isLoading} data={games}/>
     </Box>
   )
 }
